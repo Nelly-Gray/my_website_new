@@ -35,7 +35,7 @@ params:
     text: Please visit [this page](/)
   favicon: favicon.ico
   footer:
-    copyright: Company Name
+    copyright: Nelly Gray
     enable: yes
     quicklinks:
       - alt: HTML5 UP
@@ -76,8 +76,8 @@ params:
 #      - name: Elements
 #        url: elements.html
     menu: Menu
-    subtitle: By HTML5 Up
-    title: Forty
+    subtitle: LBS
+    title: Nelly Gray
   tiles:
     enable: yes
     showcase:
