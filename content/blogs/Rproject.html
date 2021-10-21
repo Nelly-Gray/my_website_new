@@ -1,0 +1,230 @@
+---
+categories:  
+- ""    #the front matter should be like the one found in, e.g., blog2.md. It cannot be like the normal Rmd we used
+- ""
+date: "2021-09-30"
+description: Some example of my work with R # the title that will show up once someone gets to this page
+draft: false
+image: group-of-people-clinking-glasses-because-they-are-drinking-together.jpg # save picture in \static\img\blogs. Acceptable formats= jpg, jpeg, or png . Your iPhone pics wont work
+
+keywords: ""
+slug: R # slug is the shorthand URL address... no spaces plz
+title: R
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<div id="loading-necessary-packages" class="section level1">
+<h1>Loading necessary packages:</h1>
+<p>Code loads the necessary packages to analyze the data and present the charts. (Not included in HTML)</p>
+</div>
+<div id="where-do-people-drink-the-most-beer-wine-and-spirits" class="section level1">
+<h1>Where Do People Drink The Most Beer, Wine And Spirits?</h1>
+<p>Back in 2014, <a href="https://fivethirtyeight.com/features/dear-mona-followup-where-do-people-drink-the-most-beer-wine-and-spirits/">fivethiryeight.com</a> published an article on alcohol consumption in different countries. The data <code>drinks</code> is available as part of the <code>fivethirtyeight</code> package which will be used here.</p>
+<p>We load the ‘fivethirtyeight’ package and drinks dataset with the code below:</p>
+<pre class="r"><code>library(fivethirtyeight)
+data(drinks)
+
+
+# or download directly
+alcohol_direct &lt;- read_csv(&quot;https://raw.githubusercontent.com/fivethirtyeight/data/master/alcohol-consumption/drinks.csv&quot;)</code></pre>
+<p>Following this we can skim and glimpse the data in order to see if there are any missing values we should worry about and to see the data and variable types.</p>
+<pre class="r"><code>skim(alcohol_direct)</code></pre>
+<table>
+<caption>(#tab:glimpse_skim_data)Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">alcohol_direct</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">193</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">5</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">character</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left">numeric</td>
+<td align="left">4</td>
+</tr>
+<tr class="even">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: character</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">empty</th>
+<th align="right">n_unique</th>
+<th align="right">whitespace</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">country</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">28</td>
+<td align="right">0</td>
+<td align="right">193</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">beer_servings</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">106.16</td>
+<td align="right">101.14</td>
+<td align="right">0</td>
+<td align="right">20.0</td>
+<td align="right">76.0</td>
+<td align="right">188.0</td>
+<td align="right">376.0</td>
+<td align="left">▇▃▂▂▁</td>
+</tr>
+<tr class="even">
+<td align="left">spirit_servings</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">80.99</td>
+<td align="right">88.28</td>
+<td align="right">0</td>
+<td align="right">4.0</td>
+<td align="right">56.0</td>
+<td align="right">128.0</td>
+<td align="right">438.0</td>
+<td align="left">▇▃▂▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">wine_servings</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">49.45</td>
+<td align="right">79.70</td>
+<td align="right">0</td>
+<td align="right">1.0</td>
+<td align="right">8.0</td>
+<td align="right">59.0</td>
+<td align="right">370.0</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">total_litres_of_pure_alcohol</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">4.72</td>
+<td align="right">3.77</td>
+<td align="right">0</td>
+<td align="right">1.3</td>
+<td align="right">4.2</td>
+<td align="right">7.2</td>
+<td align="right">14.4</td>
+<td align="left">▇▃▅▃▁</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>glimpse(alcohol_direct)</code></pre>
+<pre><code>## Rows: 193
+## Columns: 5
+## $ country                      &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Albania&quot;, &quot;Algeria&quot;, &quot;And…
+## $ beer_servings                &lt;dbl&gt; 0, 89, 25, 245, 217, 102, 193, 21, 261, 2…
+## $ spirit_servings              &lt;dbl&gt; 0, 132, 0, 138, 57, 128, 25, 179, 72, 75,…
+## $ wine_servings                &lt;dbl&gt; 0, 54, 14, 312, 45, 45, 221, 11, 212, 191…
+## $ total_litres_of_pure_alcohol &lt;dbl&gt; 0.0, 4.9, 0.7, 12.4, 5.9, 4.9, 8.3, 3.8, …</code></pre>
+<p>The overview seems to have a comprehensive number of variables. However, some countries have zero total consumption, hence we believe the data is not comprehensive and complete. The variable types are numeric and characters for the country variable.</p>
+<p>Below a plot is presented to show the top 25 beer drinking countries:</p>
+<pre class="r"><code>alcohol_direct %&gt;% #loading the dataset
+  slice_max(order_by = beer_servings, n=25) %&gt;% #sorting by top 25 countries
+  ggplot(aes(x = beer_servings, y = reorder(country, beer_servings))) + #Choosing variables on each axis and sorting to have the highest countries on top.
+  geom_col(fill = &quot;Orange&quot;) + #Making the graph orange
+  labs(title = &quot;Namibia is the most beer-consuming country&quot;, #This line and the ones below add titles and axis
+       subtitle = &quot;Beers consumed by country, top 25 countries woldwide, 2010&quot;, 
+       x = &quot;Beer servings per person&quot;,
+       y = &quot;Country&quot;,
+       caption = &quot;https://fivethirtyeight.com/features/dear-mona-followup-where-do-people-drink-the-most-beer-wine-and-spirits/&quot;) + 
+  theme_bw() + #Making a more simple theme
+  NULL</code></pre>
+<p><img src="/blogs/Rproject_files/figure-html/beer_plot-1.png" width="648" style="display: block; margin: auto;" />
+From the graph it is evident that Namibia drinks the most beers per capita and that some countries drink up toward one beer per day per capita.</p>
+<p>We now want to see the top 25 wine producing countries.</p>
+<pre class="r"><code>alcohol_direct %&gt;% #Loading the dataset
+  slice_max(order_by = wine_servings, n=25) %&gt;% #Sorting for top 25 countries
+  ggplot(aes(x = wine_servings, y = reorder(country, wine_servings))) + #Choosing variable types and sorting the variables by servings
+  geom_col(fill = &quot;Darkred&quot;) + #Making the bars dark red fitting with the wine theme
+  labs(title = &quot;France is the most wine-consuming country&quot;, #This section adds titles
+       subtitle = &quot;Wine consumed by country, top 25 countries worldwide, 2010&quot;, 
+       x = &quot;Wine servings per person&quot;,
+       y = &quot;Country&quot;,
+       caption = &quot;https://fivethirtyeight.com/features/dear-mona-followup-where-do-people-drink-the-most-beer-wine-and-spirits/&quot;) + 
+  theme_bw() + #Adding a more simple theme
+  NULL</code></pre>
+<p><img src="/blogs/Rproject_files/figure-html/wine_plot-1.png" width="648" style="display: block; margin: auto;" /></p>
+<p>We see that especially France and Portugal drinks a lot of wine per capita also equivalent of a unit per day per person like the top beer drinking countries. There is a bit further span on the top 25 wine-drinking countries where the lowest countries are as low as around 160 compared to 240 for beer drinking countries.</p>
+<p>Finally, we make a plot that shows the top 25 spirit consuming countries</p>
+<pre class="r"><code>alcohol_direct %&gt;% #choosing the data
+  slice_max(order_by = spirit_servings, n=25) %&gt;% #sorting by top 25 countries
+  ggplot(aes(x = spirit_servings, y = reorder(country, spirit_servings))) + #plotting variables and reordering by top max on top
+  geom_col(fill = &quot;Darkgreen&quot;) + #Making the plot dark green
+  labs(title = &quot;Grenada is the most spirit-consuming country&quot;,#adding titles
+       subtitle = &quot;Spirit consumed by country, top 25 countries worldwide, 2010&quot;, 
+       x = &quot;Spirit servings per person&quot;,
+       y = &quot;Country&quot;,
+       caption = &quot;https://fivethirtyeight.com/features/dear-mona-followup-where-do-people-drink-the-most-beer-wine-and-spirits/&quot;) + 
+  theme_bw() + 
+  NULL</code></pre>
+<p><img src="/blogs/Rproject_files/figure-html/spirit_plot-1.png" width="648" style="display: block; margin: auto;" />
+Here we see that Grenada is the highest spirits drinking country but also the country with the most units for a single alcohol type with approximately 430 units.</p>
+<p>While these three charts show the overall consumption of different types of alcoholic beverages, the top 25 countries differ highly by category because each country has a high preference for one certain type of alcohol. For the same reason, we cannot infer whether these countries are the highest alcohol-consuming countries overall. Furthermore, it seems that within all categories the top 25 countries drink approximately 150-370 servings. This is with the exception of Grenada where spirit servings are above 400 units. This could likely indicate a preference for spirits also could be due to a lack of availability of other alcohol types in the country.</p>
+<p>In addition to the above, the graphs show units per person so we cannot infer which country has the highest total consumption of units. For example although Grenada has the highest number of units per person their total consumption can be lower than that of other countries because of the low population.</p>
+<p>Furthermore, this data shows per capita consumption, however, it would be interesting to dive deeper into how this is segmented throughout the countries, i.e. if certain segments have much higher consumption than others.</p>
+<p>The data is from 2010 and consumption might have changed since then.</p>
+<p>```</p>
+</div>
