@@ -1,9 +1,9 @@
 ---
 date: "2017-10-31T22:27:21-05:00"
 draft: false
-image: pic02.jpg
+image: banner.jpg
 slug: blogs
-title: Lifestyle
+title: Welcome to my blogs!
 ---
 
-My blogs about technology and lifestyle.
+My blogs about my favourite places and example of R work.
