@@ -6,6 +6,7 @@ googleAnalytics: ''
 disqusShortname: ''
 params:
   banner:
+    image: IMG_8598.jpeg
     buttonText: Get Started
     subtitle: |-
       Welcome to my website!
@@ -93,7 +94,7 @@ params:
         title: Paris
         url: blogs/Paris
       - image: IMG_1076.jpeg
-        subtitle: Academic exchange in Dublin
+        subtitle: Academic exchange
         title: Dublin
         url: blogs/Dublin          
       - image: IMG_6904.jpeg
