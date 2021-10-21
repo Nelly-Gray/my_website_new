@@ -8,8 +8,7 @@ params:
   banner:
     buttonText: Get Started
     subtitle: |-
-#      A RESPONSIVE SITE TEMPLATE DESIGNED BY HTML5 UP
-#      AND RELEASED UNDER THE CREATIVE COMMONS.
+      Welcome to my website!
     title: Hi, my name is Nelly
   blog: {}
   contact:
@@ -81,22 +80,34 @@ params:
   tiles:
     enable: yes
     showcase:
-      - image: pic01.jpg
+      - image: EFC59EEF53-edit.jpg
         subtitle: My resume
         title: Presentation
-        url: blogs/aliquam
-      - image: pic03.jpg
-        subtitle: Project 1
-        title: Project 1
-        url: blogs/Project 1
-      - image: pic04.jpg
-        subtitle: Project 2
-        title: Project 2
-        url: blogs/Project 2
-      - image: pic05.jpg
-        subtitle: Other
-        title: Other things about me
-        url: blogs/Other
+        url: blogs/Presentation
+      - image: IMG_8709.jpeg
+        subtitle: LBS
+        title: London
+        url: blogs/London
+      - image: IMG_7696.jpeg
+        subtitle: Internships
+        title: Paris
+        url: blogs/Paris
+      - image: IMG_1076.jpeg
+        subtitle: Academic exchange in Dublin
+        title: Dublin
+        url: blogs/Dublin          
+      - image: IMG_6904.jpeg
+        subtitle: EDHEC
+        title: Nice
+        url: blogs/Nice
+      - image: IMG_7852.jpeg
+        subtitle: South of France
+        title: Home
+        url: blogs/Home 
+      - image: R_logo.png
+        subtitle: An example of work in R
+        title: R
+        url: blogs/R         
 
   two:
     buttonText: Get Started
