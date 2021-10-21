@@ -3,7 +3,7 @@ categories:
 - ""
 - ""
 date: "2017-10-31T22:42:51-05:00"
-description: Last but not least, home
+description: Where I come from
 draft: false
 image: IMG_7850.jpeg
 keywords: ""
