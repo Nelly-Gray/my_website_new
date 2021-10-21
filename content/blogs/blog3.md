@@ -2,14 +2,13 @@
 categories:
 - ""
 - ""
-date: "2017-10-31T22:26:13-05:00"
-description: Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna
-  sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa
-  sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem
-  consequat tincidunt. Vivamus et sagittis tempus.
+date: "2017-10-31T22:42:51-05:00"
+description: I spent 4 years in Nice to study at EDHEC Business School
 draft: false
-image: pic08.jpg
+image: 1E5D4C97-A3D7-4181-9024-5A37E3F02F56.jpg
 keywords: ""
-slug: tempus
-title: Tempus
+slug: Nice
+title: Nice
 ---
+
+Following my baccalaureate, I went to Nice for my undergraduate studies. I loved this warm city!
