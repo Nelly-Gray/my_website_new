@@ -6,7 +6,7 @@ googleAnalytics: ''
 disqusShortname: ''
 params:
   banner:
-    image: IMG_8598.jpeg
+    image: banner.jpeg
     buttonText: Get Started
     subtitle: |-
       Welcome to my website!
